@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NPTEL AI Exam Prep</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#1b2333;--mu:#667085;--bd:#dde3ee;--pr:#3b5bdb;--prs:#e8edff;--ok:#12805c;--oks:#e3f6ee;--bad:#c92a2a;--bads:#fdeaea;--wr:#b45309;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1420;--card:#192033;--tx:#e8ecf5;--mu:#98a2b8;--bd:#2a3550;--pr:#748ffc;--prs:#222d52;--ok:#4cd9a0;--oks:#12352a;--bad:#ff8787;--bads:#3b1c20;--wr:#fbbf24}}
+:root[data-theme="dark"]{--bg:#0f1420;--card:#192033;--tx:#e8ecf5;--mu:#98a2b8;--bd:#2a3550;--pr:#748ffc;--prs:#222d52;--ok:#4cd9a0;--oks:#12352a;--bad:#ff8787;--bads:#3b1c20;--wr:#fbbf24}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.6rem;margin:8px 0 2px}h2{font-size:1.1rem;margin:20px 0 8px}
+.mu{color:var(--mu);font-size:.92rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin:12px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:7px 13px;font-size:.9rem;cursor:pointer}
+.chip.on{background:var(--pr);border-color:var(--pr);color:#fff}
+.btn{border:0;border-radius:10px;padding:12px 22px;font-size:1rem;font-weight:600;cursor:pointer;background:var(--pr);color:#fff}
+.btn.g{background:var(--prs);color:var(--pr)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pr);transition:width .25s}
+.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:5}
+.tag{font-size:.78rem;color:var(--pr);background:var(--prs);padding:2px 9px;border-radius:999px;display:inline-block}
+.q{font-size:1.15rem;font-weight:600;margin:10px 0 14px}
+.o{display:flex;gap:12px;width:100%;text-align:left;border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:1rem;cursor:pointer}
+.o b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--prs);color:var(--pr);display:grid;place-items:center;font-size:.85rem}
+.o.s{border-color:var(--pr);background:var(--prs)}
+.o.ok{border-color:var(--ok);background:var(--oks)}.o.ok b{background:var(--ok);color:#fff}
+.o.bad{border-color:var(--bad);background:var(--bads)}.o.bad b{background:var(--bad);color:#fff}
+.fb{padding:10px 14px;border-radius:10px;margin-top:10px;font-weight:600}
+.fb.ok{background:var(--oks);color:var(--ok)}.fb.bad{background:var(--bads);color:var(--bad)}
+.big{font-size:3rem;font-weight:800;text-align:center;margin:4px 0}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}.st div{background:var(--prs);border-radius:10px;padding:10px}.st b{display:block;font-size:1.3rem}
+.rv{border-left:4px solid var(--bad);padding:4px 12px;margin:12px 0}.rv p{margin:3px 0}
+html{-webkit-text-size-adjust:100%}button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;font-family:inherit}
+.o{min-height:52px;align-items:center}.chip{min-height:40px}.btn{min-height:48px}
+.act{position:sticky;bottom:0;background:var(--bg);padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));margin-top:8px;display:flex;gap:10px;z-index:5}
+.act .btn{flex:1}.act .btn.g{flex:0 0 auto}
+.tip{display:none}@media (hover:hover) and (pointer:fine){.tip{display:block}}
+@media (max-width:520px){.w{padding:12px}h1{font-size:1.35rem}.q{font-size:1.05rem}.card{padding:14px}.o{padding:11px 12px;gap:10px;font-size:.97rem}.chip{font-size:.85rem}.big{font-size:2.4rem}.res .btn{flex:1 1 100%}}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div>
+<script>
+const U=[
+{n:"AI Basics & Agents",q:[
+["What is Artificial Intelligence?","Artificial Intelligence is a field that aims to develop intelligent machines","Artificial Intelligence is a field that aims to make humans more intelligent","Artificial Intelligence is a field that aims to improve the security","Artificial Intelligence is a field that aims to mine the data"],
+["Which of the following is a branch of Artificial Intelligence","Machine Learning","Cyber Forensics","Network Design","Full-stack Developer"],
+["Which of the following is a component of Artificial Intelligence","Learning","Training","Designing","Coding"],
+["What is an agent’s percept sequence?","A complete history of everything the agent has ever perceived","The sequence of all actions the agent takes","The hardware architecture of the agent","The sequence of the agent’s goals"],
+["Which agent architecture requires a representation of “how the world works” to keep track of unobserved aspects of the environment?","Model-based agent","Simple reflex agent","Table-driven agent","Goal-based agent"],
+["Which type of agent chooses actions purely based on the current condition and ignores the perceptual past?","Simple reflex agent","Goal-based agent","Learning agent","Utility-based agent"],
+["Which agent type uses a “problem generator” to suggest new actions and explore new paths?","Learning agent","Model-based agent","Simple reflex agent","Utility-based agent"],
+["What is the defining characteristic of a “Rational Agent”?","It selects actions expected to maximize its performance measure based on its percept","It always learns through reinforcement","It has a fully observable environment","It completely avoids human intervention"],
+["In Artificial Intelligence, an informed search strategy is also known as:","Heuristic search","Blind search","Brute-force search","Exhaustive search"],
+["In Artificial Intelligence, a search which does not use any domain knowledge is known as:","Blind search","Best first search","Heuristic search","Greedy search"]]},
+{n:"Search & Games",q:[
+["Problem-solving agents are designed to:","Solve specific problems by searching for solutions","Play games only","Manage computer networks","Create animations"],
+["Which data structure is used to implement a Breadth-First Search (BFS) algorithm?","Queue","Stack","Priority queue","Hash table"],
+["Which uninformed search algorithm evaluates and expands the node with the lowest path cost g(n) first?","Uniform cost strategy","Breadth-first search","Depth-first search","Depth-limited search"],
+["Depth-first search always expands the ______ node in the current fringe of the search tree.","Deepest","Shallowest","Child node","Minimum cost"],
+["Which search strategy is guaranteed to find the shortest path in a graph?","Breadth-first search","Depth-first search","Greedy best-first search","Hill climbing search"],
+["Which of the following is an uninformed search strategy?","Breadth-first search","Greedy best-first search","A* algorithm","Hill climbing search"],
+["Greedy best-first search uses:","A heuristic to estimate the cost to the goal","The path cost from the start node","Random exploration","Depth-limited search"],
+["A heuristic function is:","A function that estimates the cost to the goal","A function that calculates the exact cost to the goal","A function that generates random numbers","A function used only in uninformed search"],
+["What is the primary purpose of the Minimax algorithm?","To make the optimal move assuming the opponent also plays optimally","To find the shortest path in a graph","To generate random moves in single-player puzzles","To speed up the processing time of a game engine"],
+["What is the main advantage of using Alpha-Beta pruning over the standard Minimax algorithm?","It eliminates unnecessary branches in the game tree without affecting the final decision","It avoids the need to evaluate leaf nodes entirely","It guarantees a win for both players in a zero-sum game","It allows the AI to play games with incomplete information"]]},
+{n:"Local Search & Genetic Algorithms",q:[
+["State the best-case scenario for alpha-beta pruning in terms of node ordering","Best-to-worst","Worst-to-best","Random","Best-first"],
+["Local search algorithms are typically used when:","The path to the goal is completely irrelevant, and only the final state matters","The exact path to the goal state is crucial","The state space is very small and can be fully tracked","No heuristic information is available"],
+["What is the time complexity of the minimax algorithm in terms of the branching factor (b) and maximum depth (m) of the tree?","O(b^m)","O(b*m)","O(b+m)","O(b/m)"],
+["Hill-Climbing search is often referred to as a “greedy local search” because:","It chooses the best immediate neighboring state without thinking ahead","It evaluates all global nodes before making any structural decision","It keeps expanding nodes until all memory allocations are fully filled","It relies entirely on a pre-computed target oracle"],
+["In a Genetic Algorithm, the process of combining parts of two parent solutions to generate new child successor states is formally called:","Crossover","Mutation","Selection","Fitness scaling"],
+["Which genetic operator introduces random changes in an individual’s genetic material?","Mutation","Crossover","Encoding","Selection"],
+["Which local search technique actively utilizes a “cooling schedule” parameter to temporarily accept worse moves and escape local optima?","Simulated annealing","Genetic algorithm","Stochastic hill climbing","First choice hill climbing"],
+["Which of the following is a primary difference between Genetic Algorithms (GA) and Genetic Programming (GP)?","GAs typically evolve data structures or strings, while GPs explicitly evolve executable computer programs","GAs use fitness functions, whereas GPs do not","GAs mimic biological evolution, whereas GPs mimic human psychology","GAs rely entirely on mutation, while GPs rely entirely on crossover"],
+["In Simulated Annealing, what does the “temperature” parameter control?","The probability of accepting a worse solution","The memory size of the algorithm","The number of neighboring states generated at once","The speed of the hardware running the algorithm"],
+["What happens as the temperature (T) approaches zero in the Simulated Annealing algorithm?","The algorithm behaves increasingly like a greedy Hill Climbing search","The algorithm acts more like pure random search","The algorithm begins accepting almost any move","The algorithm terminates and clears its memory"]]},
+{n:"Logic (Propositional & FOL)",q:[
+["Propositional logic deals with","True or false statements","Objects and relations","Quantifiers","Rules"],
+["Which logic uses predicates and quantifiers?","Predicate logic","Propositional logic","Semantic logic","Boolean logic"],
+["What is forward chaining?","Reasoning from facts to solutions","Reasoning from goals to facts","Backtracking","Loop detection"],
+["Forward chaining is also called:","Data-driven reasoning","Goal-driven reasoning","Random reasoning","Backward reasoning"],
+["Translate into FOL: “For every a, if a is a philosopher, then a is a scholar” [options reconstructed]","∀a (Philosopher(a) → Scholar(a))","∀a (Philosopher(a) ∧ Scholar(a))","∃a (Philosopher(a) → Scholar(a))","∀a (Scholar(a) → Philosopher(a))"],
+["How do you represent “All dogs have tails” in FOL [options reconstructed]","∀x (Dog(x) → HasTail(x))","∀x (Dog(x) ∧ HasTail(x))","∃x (Dog(x) ∧ HasTail(x))","∀x (HasTail(x) → Dog(x))"],
+["A compound statement has 4 distinct propositional variables. How many rows are there in its truth table? [statement reconstructed]","16","15","8","32"],
+["Which form is called the conjunction of the disjunction of literals?","Conjunctive normal form","Disjunctive normal form","Normal form","All of the above"],
+["Which of the following is not a style of inference?","Modus Ponens","Forward chaining","Backward chaining","Resolution refutation"]]},
+{n:"Expert Systems & Planning",q:[
+["What is the primary goal of an expert system?","To mimic human decision-making","To automate routine tasks","To provide entertainment","To store large databases"],
+["Which component of an expert system contains domain-specific knowledge?","Knowledge base","Inference engine","User interface","Database"],
+["What is knowledge acquisition in expert systems?","Both gathering knowledge and representing knowledge","Gathering knowledge from experts","Representing knowledge in a machine-readable format","Neither gathering knowledge nor representing knowledge"],
+["The main advantage of Partial Order Planning over Total Order Planning is:","Flexibility in the ordering of actions","Faster data processing","Increased network efficiency","Simplified problem statements"],
+["In the context of planning, execution monitoring refers to:","Observing the execution of the plan to detect and respond to discrepancies","Monitoring network traffic during planning","Monitoring data encryption processes","Checking the efficiency of data storage during planning"],
+["What does “HTN” stand for in the context of hierarchical planning?","Hierarchical Task Network","Heuristic Temporal Network","Hybrid Transition Node","Hierarchical Tree Navigation"],
+["Which of the following best describes “decomposition” in hierarchical planning?","Translating a complex action into a sequence of partial, lower-level sub-actions","Removing failed tasks from the agent’s memory","Grouping objects with similar properties into categories","Converting a physical action back into a logic rule"],
+["Which algorithm is used to extract a plan directly from a planning graph?","GraphPlan","A* search","Minimax","Hill climbing"],
+["What does the term “mutual exclusion” (mutex) represent in a planning graph?","Actions or propositions that cannot both be true or executed at the same time step","Actions that mutually share the same goal","Propositions that are identical in two different levels","Goals that have already been achieved"],
+["Which of the following is a limitation of using planning graphs?","They work only for propositional planning problems with no variables","They can only be used with continuous variables","They guarantee the shortest possible plan is always found","They cannot handle multiple actions at the same time step"]]},
+{n:"Knowledge Representation & Probability",q:[
+["What is the main purpose of Knowledge Representation in AI systems?","To convert data into machine-readable formats for reasoning and problem-solving","To create realistic user interfaces","To accelerate deep learning model training","To compress large databases efficiently"],
+["Which type of knowledge representation uses nodes to represent objects/concepts and arcs/edges to represent relations or associations?","Semantic Networks","Procedural Representation","Propositional Logic","Relational Databases"],
+["What is the primary characteristic of non-monotonic reasoning?","Adding new information can invalidate previously drawn conclusions","Adding new information increases the number of valid conclusions","Conclusions are always definitive and cannot be changed","It relies purely on exact mathematical theorems"],
+["Default reasoning in AI is a type of:","Non-monotonic reasoning","Monotonic reasoning","Deductive reasoning","Backward reasoning"],
+["Which system in AI is specifically designed to manage and revise beliefs when new facts contradict prior conclusions?","Truth Maintenance System (TMS)","Feed-forward Neural Networks","Propositional logic resolution","Fuzzy logic controllers"],
+["Two unbiased coins are tossed. What is the probability of getting at most one head?","3/4","1/6","1/3","1/2"],
+["What’s the probability of drawing a red card or a card with a face (king, queen, or jack) from a standard deck of 52 cards?","8/13","13/52","21/52","29/52"],
+["In CD theory, what does the primitive act PTRANS stand for?","The transfer of physical location","The transfer of mental information","The transfer of physical possession","The transformation of energy"],
+["A structure that describes a stereotypical sequence of events is known as:","Script","Conceptual dependency","Frames","Bayesian network"],
+["What is the purpose of ‘Default Values’ in a frame?","To provide a standard assumption when no specific information is provided for a slot","To define the exact data type of a slot","To act as a procedure to calculate runtime metrics","To restrict the range of values an attribute can hold"]]},
+{n:"Bayesian Networks & Decision Theory",q:[
+["What type of graph structure is used to represent a Bayesian Network?","Directed Acyclic Graph (DAG)","Undirected Cyclic Graph","Directed Cyclic Graph","Tree Structure with Cycles"],
+["What is a Conditional Probability Table (CPT) used for in a Bayesian Network?","To specify the probability of a node given its parent nodes","To list all possible deterministic rules in the domain","To calculate the marginal probability of all root nodes","To find the shortest path in the network"],
+["What is the primary advantage of a Bayesian Network over a full joint probability distribution?","It requires fewer probabilities to be defined, reducing complexity","It can only be applied to deterministic environments","It guarantees 100% accurate predictions","It does not require conditional probability tables"],
+["How does a DBN maintain its structure across different time steps?","It has a regular, repeated structure with the same set of features","The network structure is randomly generated at each time step","It relies entirely on feedforward neural networks without memory","It completely changes its variables to accommodate new data"],
+["How is Decision Theory formally defined in Artificial Intelligence?","Decision Theory = Probability theory + Utility theory","Decision Theory = Probability theory + First-Order Logic","Decision Theory = Search algorithms + Utility theory","Decision Theory = Inference + Rules"],
+["Where is Bayes’ rule primarily used in artificial intelligence?","Answering probabilistic queries conditioned on specific evidence","Decreasing the complexity of non-deterministic polynomial-time problems","Solving deterministic, rule-based logic puzzles","Performing unsupervised clustering of continuous data variables"],
+["Consider Bayes’ theorem. What does P(A|B) represent?","Posterior probability","Prior probability","Likelihood","Marginal likelihood"],
+["What are the three required terms to build a basic Bayes model for probabilistic reasoning?","One conditional probability and two unconditional probabilities","A joint probability, a marginal probability, and a conditional probability","Three independent probabilities","Two conditional probabilities and one joint probability"],
+["Box A contains 4 red and 5 blue coins; box B contains 6 red and 3 blue coins. A coin is chosen at random from box A and placed in box B. Then a coin is chosen at random from box B. What is the probability that a blue coin was transferred from A to B, given that the coin chosen from B is red?","15/29","14/29","1/2","7/10"],
+["A utility function in AI expresses what?","The desirability of states or outcomes","The execution time of an algorithm","The amount of computer memory usage","The probability of system failure"]]},
+{n:"Machine Learning (kNN, SVM, Rules, Trees)",q:[
+["What is the goal of “Unsupervised Learning” in AI?","To discover hidden patterns or intrinsic structures within unlabeled data","To predict a continuous output value based on labeled data","To learn sequences of actions through trial and error to maximize a reward","To map inputs to exact classifications provided by a human expert"],
+["How is a prediction made for a new data point in kNN classification?","By majority vote of the K nearest neighbors","By plotting a decision tree","By calculating the mean squared error","By taking the weighted average of all training points"],
+["Why is feature scaling (e.g., normalization or standardization) important before applying KNN?","To prevent features with larger scales from dominating the distance calculations","To reduce the memory required to store the dataset","To change the algorithm from supervised to unsupervised","To increase the number of dimensions in the dataset"],
+["What are support vectors in the context of SVM?","Data points that lie closest to the decision boundary","Data points that are incorrectly classified","All data points used for training","The parameters used to define the hyperplane weight vector"],
+["What does the “coverage” metric of a classification rule evaluate?","The proportion of records in the dataset that trigger the rule’s condition","The percentage of all predictions that are completely accurate","The size of the memory space consumed by the rule base","The depth of the underlying evaluation structure"],
+["When a rule set is “mutually exclusive,” it means that for any given data instance:","At most one rule can be triggered","Every rule in the database must evaluate to true","No rules can be applied to it","The accuracy of the classification is 100%"],
+["What property is satisfied when a set of rules ensures that every possible combination of attribute values in a dataset triggers at least one rule?","Exhaustive coverage","Mutual exclusion","Deterministic ranking","Overlapping coverage"],
+["In a decision tree structure, what do the leaf nodes represent?","Class labels or final outcomes","Features to be tested","Conditions or rules","Missing data values"],
+["What is the fundamental purpose of “Pruning” a decision tree?","To prevent overfitting and improve generalization","To make the tree grow deeper","To reduce training time","To convert a classification tree into a regression tree"],
+["If a dataset node contains data points that all belong to the exact same class, what is its mathematical Entropy?","0.0","1.0","0.5","-1.0"]]},
+{n:"Neural Networks & Imbalanced Data",q:[
+["In a feedforward neural network, how does information flow?","Forward only","Bidirectional","Randomly","Backward only"],
+["What type of problem can a Single-Layer Perceptron NOT solve, but a Multilayer Perceptron CAN solve?","XOR logic gate","AND logic gate","OR logic gate","NOT logic gate"],
+["What is the purpose of the ‘epochs’ parameter when training a multilayer perceptron model?","It specifies the number of times the model will go through the entire training data set","It determines the number of layers in the network","It controls the learning rate during training","It defines the batch size"],
+["What is the primary consequence of training a machine learning model on a heavily imbalanced dataset?","The model becomes biased toward the majority class and struggles to predict the minority class","The model perfectly generalizes to unseen data","The model takes significantly less time to train","The model is unable to process any data"],
+["Which of the following evaluation metrics is NOT recommended for imbalanced datasets?","Accuracy","Precision","Recall","F1 score"],
+["What technique balances a dataset by randomly duplicating instances of the minority class?","Random oversampling","Random undersampling","SMOTE (Synthetic Minority Oversampling Technique)","Dimensionality Reduction"],
+["What is a primary risk associated with Random Undersampling?","It can lead to the loss of valuable information from the majority class","It requires much more computational power","It might generate unrealistic synthetic data","It creates over-fitting by duplicating examples"],
+["How does SMOTE primarily differ from basic random over-sampling?","It generates new, synthetic examples of the minority class by interpolating between existing ones","It removes samples from the majority class to reduce imbalance","It assigns higher penalty costs to misclassifying the minority class","It optimizes hyperparameters to reduce model bias"],
+["In the context of version space learning, what is a “G-set”?","The boundary set of maximally general hypotheses consistent with training data","The set of all general hypotheses","The set of greedy heuristics","The hypothesis space generated by decision trees"],
+["In version space learning, how is the “current best hypothesis” typically adjusted when it misclassifies a new training example?","The hypothesis is generalized (if a false negative) or specialized (if a false positive) to accommodate the new example","It is discarded, and the search resets","The algorithm increases the dimensionality of the input data","The model shifts to an unsupervised clustering method"]].concat([])},
+{n:"Deep Learning",q:[
+["Which network is suitable for sequential data?","RNN","CNN","GAN","DNN"],
+["Which technique helps prevent overfitting in deep networks?","Dropout","Gradient Descent","One-hot encoding","Feature Scaling"],
+["What is the main role of pooling layers in CNNs?","Reduce spatial dimensions","Increase accuracy","Extract features","Normalize data"],
+["What does a convolution operation do in a CNN?","Applies a filter to extract features","Compresses input","Connects neurons","Backpropagates error"],
+["Which problem does LSTM solve better than RNN?","Vanishing gradient","Gradient descent","Short-term memory","Batch processing"],
+["Word embeddings are used to:","Convert words to vectors","Generate images","Train neural networks","Segment sentences"],
+["Which of these is a transformer-based model?","BERT","ResNet","Word2Vec","VGG"],
+["In GANs, the generator aims to:","Fool the discriminator","Classify real data","Discriminate data","Train CNNs"],
+["What is the primary advantage of using transfer learning in deep learning?","Utilizing pre-trained models to improve performance on new tasks with limited data","Faster training time","Avoiding the need for labeled data","Simplifying the architecture of deep neural networks"],
+["What is a generative model in deep learning?","A model that generates new data samples that resemble the training data","A model that generates random data for testing","A model that uses unsupervised learning to learn patterns in the data","A model that generates random weights for initializing neural networks"]]},
+{n:"Transformers & Fuzzy Logic",q:[
+["What is the primary purpose of “Positional Encoding” in a Transformer?","To inject information about the relative or absolute position of tokens in a sequence","To translate words into high-dimensional numerical vectors","To calculate the similarity between words in the input","To normalize the gradients during backpropagation"],
+["In a Multi-Head Attention layer, what are the three vectors (or matrices) computed from the input?","Queries, Keys, and Values","Inputs, Outputs, and Weights","Vectors, Matrices, and Tensors","Encoders, Decoders, and Embeddings"],
+["What is the function of the encoder in a transformer model?","Process input sequence into representation","Generate predictions","Decode output","Translate sequences"],
+["Which mechanism allows Transformers to focus on relevant parts of the input?","Attention","Convolution","Recurrence","Pooling"],
+["What is the form of Fuzzy logic?","Many-valued logic","Two-valued logic","Crisp set logic","Binary set logic"],
+["There are other operators, more linguistic in nature, called _______ that can be applied in fuzzy set theory","Hedges","Lingual variable","Fuzz variable","None of these"],
+["What is the purpose of fuzzy relations in fuzzy logic?","To model uncertain or vague relationships between elements","To define crisp relationships between elements","To eliminate ambiguity in relationships","To establish precise connections between elements"],
+["What is the first step in fuzzification process in fuzzy control?","Membership function application","Defuzzification","Rule evaluation","Data collection"],
+["What does defuzzification achieve in fuzzy control?","Converts fuzzy outputs into crisp outputs","Converts crisp inputs into fuzzy inputs","Applies membership functions","Evaluates fuzzy rules"],
+["What is the function of the centroid method in defuzzification?","It determines the center of gravity of the fuzzy output","It calculates the average of all fuzzy outputs","It selects the highest membership value as the output","It transforms fuzzy outputs into crisp values"]]},
+{n:"NLP, Ethics & Swarm Intelligence",q:[
+["Which of the following is the process of breaking down a text into individual words, symbols, or terms?","Tokenization","Lemmatization","Stemming","Parsing"],
+["What NLP technique is used to determine whether a given text expresses a positive, negative, or neutral opinion?","Sentiment Analysis","Machine Translation","Named Entity Recognition","Text Summarization"],
+["What is the primary purpose of Word Sense Disambiguation in NLP?","To select the correct meaning of a word that has multiple meanings based on context","To correct spelling mistakes in the text","To extract named entities like names and dates","To remove unnecessary punctuation"],
+["If an AI recruitment tool favors male candidates over female candidates because it was trained on historical data, which ethical principle has been violated?","Fairness and justice","Privacy","Efficiency","Transparency"],
+["What is one of the primary ethical concerns regarding Artificial Intelligence?","Data privacy and security","Enhancement of human cognitive abilities","Cost of implementing AI systems","Speed of algorithm processing"],
+["In AI decision-making systems, what is the risk associated with biased algorithms?","Discrimination against specific groups","Improved decision-making accuracy","Increased efficiency in processing data","Enhanced fairness in decision-making"],
+["What is the main inspiration for Swarm Intelligence?","The social behavior of insects like ants and bees","The human brain’s neural networks","Brute-force mathematical calculations","Rule-based expert systems"],
+["Which algorithm mimics how ants find the shortest path to food?","Ant Colony Optimization (ACO)","Artificial Bee Colony (ABC)","Particle Swarm Optimization (PSO)","K-Means Clustering"],
+["What term refers to indirect communication (like leaving pheromones) between swarm agents?","Stigmergy","Inheritance","Mutation","Backpropagation"],
+["How do cooperative agents behave in a Multi-Agent System?","They work toward shared objectives, sharing information and resources","They fight for the same limited resources to maximize their own wins","They act randomly without any goals","They completely ignore each other’s existence"]]}
+];
+const TOTAL=U.reduce((a,u)=>a+u.q.length,0);
+const $=s=>document.querySelector(s),app=$("#app");
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const L="ABCD";
+let sel=new Set(U.map((_,i)=>i)),cnt=0,mode="practice",S=null,tm=null;
+
+function pool(){let p=[];U.forEach((u,ui)=>{if(sel.has(ui))u.q.forEach(q=>p.push({t:q[0],a:q[1],ws:q.slice(2),u:ui}))});return p}
+function build(p){return sh(p).map(x=>{const o=sh([x.a].concat(x.ws));return{t:x.t,o,c:o.indexOf(x.a),u:x.u}})}
+function home(){
+  clearInterval(tm);
+  const p=pool(),n=p.length;
+  app.innerHTML=`<h1>🎯 NPTEL AI Exam Prep</h1><div class="mu">Introduction to Artificial Intelligence · ${TOTAL} questions across 12 assignments · all questions and options are reshuffled every attempt</div>
+  <div class="card"><div class="row"><b>1. Choose assignments</b><span><button class="chip" id="all">All</button> <button class="chip" id="none">None</button></span></div><div class="chips" style="margin-top:10px">${U.map((u,i)=>`<button class="chip ${sel.has(i)?"on":""}" data-u="${i}">${i+1}. ${esc(u.n)} (${u.q.length})</button>`).join("")}</div></div>
+  <div class="card"><b>2. Number of questions</b><div class="chips" style="margin-top:10px">${[0,10,20,30,60].map(c=>`<button class="chip ${cnt===c?"on":""}" data-c="${c}">${c?c:"All selected ("+n+")"}</button>`).join("")}</div></div>
+  <div class="card"><b>3. Mode</b><div class="chips" style="margin-top:10px"><button class="chip ${mode==="practice"?"on":""}" data-m="practice">Practice – instant right/wrong</button><button class="chip ${mode==="exam"?"on":""}" data-m="exam">Exam – results at the end</button></div></div>
+  <div class="act"><button class="btn" id="go" ${n?"":"disabled"}>Start · ${cnt?Math.min(cnt,n):n} questions</button></div>`;
+  app.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{const i=+b.dataset.u;sel.has(i)?sel.delete(i):sel.add(i);home()});
+  app.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{cnt=+b.dataset.c;home()});
+  app.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{mode=b.dataset.m;home()});
+  $("#all").onclick=()=>{sel=new Set(U.map((_,i)=>i));home()};
+  $("#none").onclick=()=>{sel=new Set();home()};
+  $("#go").onclick=()=>start(build(pool()).slice(0,cnt||1e9));
+}
+function start(list){
+  S={l:list,i:0,s:null,ck:false,ans:[],t0:Date.now()};
+  clearInterval(tm);tm=setInterval(()=>{const e=$("#tm");if(e)e.textContent=fmt((Date.now()-S.t0)/1000|0)},1000);
+  quiz();
+}
+const fmt=s=>(s/60|0)+":"+String(s%60).padStart(2,"0");
+function quiz(){
+  const q=S.l[S.i],last=S.i===S.l.length-1;
+  const sc=S.ans.filter(a=>a.ok).length;
+  app.innerHTML=`<div class="top"><div class="row mu"><span>Question ${S.i+1} / ${S.l.length}</span>${mode==="practice"?`<span>✔ ${sc} · ✘ ${S.ans.length-sc}</span>`:""}<span>⏱ <span id="tm">${fmt((Date.now()-S.t0)/1000|0)}</span></span></div><div class="bar" style="margin-top:6px"><i style="width:${S.i/S.l.length*100}%"></i></div></div>
+  <div class="card"><span class="tag">Assignment ${q.u+1} · ${esc(U[q.u].n)}</span><div class="q">${esc(q.t)}</div>
+  ${q.o.map((o,k)=>{let c="o";if(S.ck){if(k===q.c)c+=" ok";else if(k===S.s)c+=" bad"}else if(k===S.s)c+=" s";return `<button class="${c}" data-k="${k}"><b>${L[k]}</b><span>${esc(o)}</span></button>`}).join("")}
+  ${S.ck?(S.s===q.c?`<div class="fb ok">✔ Correct!</div>`:`<div class="fb bad">✘ Wrong. Correct answer: ${L[q.c]}. ${esc(q.o[q.c])}</div>`):""}</div>
+  <div class="act"><button class="btn g" id="quit">Quit</button>${mode==="practice"&&!S.ck?`<button class="btn" id="nx" ${S.s===null?"disabled":""}>Check answer</button>`:`<button class="btn" id="nx" ${S.s===null?"disabled":""}>${last?"Finish":"Next →"}</button>`}</div>
+  <p class="mu tip">Tip: press A–D (or 1–4) to choose, Enter to continue.</p>`;
+  app.querySelectorAll(".o").forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  $("#nx").onclick=next;$("#quit").onclick=()=>{if(confirm("Quit this attempt?"))home()};
+}
+function pick(k){if(S.ck)return;S.s=k;quiz()}
+function next(){
+  const q=S.l[S.i];
+  if(S.s===null)return;
+  if(mode==="practice"&&!S.ck){S.ck=true;S.ans.push({s:S.s,ok:S.s===q.c});quiz();const f=$(".fb");if(f)f.scrollIntoView({block:"center",behavior:"smooth"});return}
+  if(mode==="exam")S.ans.push({s:S.s,ok:S.s===q.c});
+  if(S.i===S.l.length-1){finish();return}
+  S.i++;S.s=null;S.ck=false;quiz();scrollTo(0,0);
+}
+function finish(){
+  clearInterval(tm);
+  const n=S.l.length,ok=S.ans.filter(a=>a.ok).length,pc=Math.round(ok/n*100),el=(Date.now()-S.t0)/1000|0;
+  const by={};S.l.forEach((q,i)=>{by[q.u]=by[q.u]||[0,0];by[q.u][1]++;if(S.ans[i].ok)by[q.u][0]++});
+  const wrong=S.l.map((q,i)=>({q,a:S.ans[i]})).filter(x=>!x.a.ok);
+  app.innerHTML=`<h1>Result</h1><div class="card"><div class="big" style="color:${pc>=60?"var(--ok)":"var(--bad)"}">${ok} / ${n}</div><div class="mu" style="text-align:center">${pc}% · ${fmt(el)} · ${pc>=80?"Excellent! 🎉":pc>=60?"Good, keep revising 👍":"Needs more practice 💪"}</div>
+  <div class="st" style="margin-top:14px"><div><b style="color:var(--ok)">${ok}</b>Correct</div><div><b style="color:var(--bad)">${n-ok}</b>Wrong</div><div><b>${pc}%</b>Score</div></div></div>
+  <div class="row res"><button class="btn" id="re">🔀 Reshuffle &amp; restart</button>${wrong.length?`<button class="btn g" id="rw">Retry wrong (${wrong.length})</button>`:""}<button class="btn g" id="hm">Home</button></div>
+  <h2>By assignment</h2><div class="card">${Object.keys(by).map(u=>`<div class="row"><span>${+u+1}. ${esc(U[u].n)}</span><b>${by[u][0]}/${by[u][1]}</b></div>`).join("")}</div>
+  <h2>${wrong.length?"Review mistakes":"Perfect score! 🏆"}</h2>${wrong.map(x=>`<div class="card rv"><p><b>${esc(x.q.t)}</b></p><p style="color:var(--bad)">✘ Your answer: ${esc(x.q.o[x.a.s])}</p><p style="color:var(--ok)">✔ Correct: ${esc(x.q.o[x.q.c])}</p></div>`).join("")}`;
+  $("#re").onclick=()=>start(build(pool()).slice(0,cnt||1e9));
+  if($("#rw"))$("#rw").onclick=()=>start(build(wrong.map(x=>({t:x.q.t,a:x.q.o[x.q.c],ws:x.q.o.filter((_,k)=>k!==x.q.c),u:x.q.u}))));
+  $("#hm").onclick=home;scrollTo(0,0);
+}
+document.addEventListener("keydown",e=>{
+  if(!S||!$(".o"))return;
+  const k=L.indexOf(e.key.toUpperCase()),d=+e.key-1;
+  if(k>=0&&k<4&&e.key.length===1)pick(k);else if(d>=0&&d<4)pick(d);else if(e.key==="Enter")next();
+});
+home();
+</script>
+</body>
+</html>
